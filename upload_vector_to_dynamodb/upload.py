@@ -20,7 +20,8 @@ def get_vector_from_openai_api(text):
     return response
 
 paragraphs = [
-    "IDEA Ver.3.1マニュアル第1部.pdfの23ページには、IDEAの基本的な使い方が記載されています。",
+    "サンプル文字１",
+    "サンプル文字２",
 ]
 
 # exit()
