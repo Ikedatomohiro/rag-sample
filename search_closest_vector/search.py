@@ -14,7 +14,7 @@ client = OpenAI(
 model="text-embedding-ada-002"
 
 
-def lambda_handler(event):
+def lambda_handler(event) -> dict:
     # 質問をベクトルに変換
     question = event['question']
     question_embedding = client.embeddings.create(input = [question], model=model).data[0].embedding
@@ -31,7 +31,7 @@ def lambda_handler(event):
     # 最も近いテキストを特定
     cosine_similarities = cosine_similarity([question_embedding], embeddings)
     closest_idx = np.argmax(cosine_similarities)
-    print(closest_idx)
+    return items[closest_idx]
 
-res = lambda_handler({'question': '何の映画見ようかな'})
-print(res)
+q = '何の映画見ようかな'
+res = lambda_handler({'question': q})
