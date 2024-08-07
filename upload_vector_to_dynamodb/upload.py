@@ -20,11 +20,10 @@ def get_vector_from_openai_api(text):
     return response
 
 paragraphs = [
-    "サンプル文字１",
-    "サンプル文字２",
+    "好きな動物はゾウです。",
+    "週末は映画を見て過ごします。おすすめは、ハリーポッターです。",
 ]
 
-# exit()
 for i, paragraph in enumerate(paragraphs):
     vector = get_vector_from_openai_api(paragraph)
     table.put_item(
@@ -33,6 +32,5 @@ for i, paragraph in enumerate(paragraphs):
             'vector': json.dumps(vector),
             'paragraph': paragraph,
             'source': 'IDEA Ver.3.1マニュアル第1部.pdf',
-            'page_number': 23  # 例としてページ番号を追加
         }
     )
