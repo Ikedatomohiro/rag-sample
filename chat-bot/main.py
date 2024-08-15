@@ -34,7 +34,14 @@ def lambda_handler(event) -> dict:
     return items[closest_idx]
 
 # 一番近いデータを取得
-q = '第１部の構成'
+q = 'question.md'
+with open(q, 'r', encoding='utf-8') as f:
+    q = f.read()
+
+prompt = 'prompt.md'
+with open(prompt, 'r', encoding='utf-8') as f:
+    prompt = f.read()
+
 res = lambda_handler({'question': q})
 closest_text = res['paragraph']
 
@@ -42,8 +49,8 @@ closest_text = res['paragraph']
 response = client.chat.completions.create(
     model="gpt-3.5-turbo",
     messages=[
-        {"role": "system", "content": "以下の情報に基づいて質問に答えてください: " + closest_text},
+        {"role": "system", "content": "以下の情報に基づいて質問に答えてください: " + closest_text + prompt},
         {"role": "user", "content": q},
     ]
 )
-print(response)
+print(response.choices[0].message.content)
