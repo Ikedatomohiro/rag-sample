@@ -163,3 +163,5 @@ cython_debug/
 
 terraform.tfvars
 infrastructure/.terraform/providers/
+infrastructure/terraform.tfstate
+infrastructure/terraform.tfstate.backup

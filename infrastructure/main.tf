@@ -31,3 +31,12 @@ resource "aws_dynamodb_table" "vectors_for_kankyouhakusyo_rag" {
     Name = "kankyouhakusyo-r6"
   }
 }
+
+# s3 backet を作成
+resource "aws_s3_bucket" "vectors_for_kankyouhakusyo_rag" {
+  bucket = "rag-sample-content"
+
+  tags = {
+    Name = "rag-sample-content"
+  }
+}
